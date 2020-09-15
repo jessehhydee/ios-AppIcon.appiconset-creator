@@ -6,7 +6,7 @@ import { UploadComponent } from './upload/upload.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "/upload", pathMatch: "full" },
-  { path: "upload", component: UploadComponent },
+  { path: "upload", component: UploadComponent }
 ];
 
 @NgModule({

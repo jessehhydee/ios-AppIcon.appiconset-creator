@@ -1,4 +1,6 @@
 import { Component, OnInit, HostListener} from '@angular/core';
+import { Router } from "@angular/router";
+import { CreateImagesService } from '../create-images.service';
 
 @Component({
   selector: 'app-upload',
@@ -7,21 +9,56 @@ import { Component, OnInit, HostListener} from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  constructor() { }
-
-  error: string;
-  dragAreaClass: string;
-  imgDisplayAreaClass: string;
-  imgURL: any;
-  
-  onFileChange(event: any) {
-    let files: FileList = event.target.files;
-    this.saveFiles(files);
-  }
+  constructor(public router: Router, public createImages: CreateImagesService) { }
 
   ngOnInit() {
     this.dragAreaClass = "dragarea";
   }
+
+  //VARIABLES
+
+  error: string;
+  loading: boolean = false;
+  dragAreaClass: string;
+  imgURL: any;
+  //q: Array<string> = [];
+  q: any;
+  
+  //DEALING WITH FILE UPLOAD AND STORAGE
+
+  saveFiles(files: FileList) {
+
+    if (files[0].type != "image/png") {
+      this.error = "File must be PNG";
+    }
+
+    if (files[0].type == "image/png") {
+      
+      this.createImages.pullImageFile(files[0]);
+
+      this.loading = true;
+      this.error = "";
+
+      // setTimeout(() => {
+      //   this.q = this.createImages.pushGeneratedImages();
+      //   console.log(this.q);
+
+      //   let link = document.createElement("a");
+
+      //   link.href = this.q;
+      //   link.setAttribute('visibility','hidden');
+      //   link.download = 'picture';
+
+      //   document.body.appendChild(link);
+      //   link.click();
+      //   document.body.removeChild(link);
+      // }, 1500);
+
+    }
+
+  }
+
+  //DEALING WITH DRAG AND DROP PROCESS
 
   @HostListener("dragover", ["$event"]) onDragOver(event: any) {
     this.dragAreaClass = "droparea";
@@ -57,32 +94,5 @@ export class UploadComponent implements OnInit {
       this.saveFiles(files);
     }
   }
-
-  saveFiles(files: FileList) {
-
-    if (files.length > 1) {
-      this.error = "Only one file at time allow";
-    }
-
-    if (files[0].type != "image/png") {
-      this.error = "File must be PNG";
-    }
-
-    if (files[0].type == "image/png") {
-
-      this.imgDisplayAreaClass = "imgDisplayArea";
-      
-      var reader = new FileReader();
-
-      reader.readAsDataURL(files[0]); 
-
-      reader.onload = (_event) => { 
-        this.imgURL = reader.result; 
-      }
-
-    }
-
-  }
-
 
 }

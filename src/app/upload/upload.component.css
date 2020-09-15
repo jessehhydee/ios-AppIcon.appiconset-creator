@@ -1,37 +1,27 @@
 
-.error {
-    color: #f00;
-}
 
 .dragarea {
-  width: 450px;
-  height: 200px;
-  padding: 3rem 5rem;
-  text-align: center;
-  border: dashed 1px #979797;
-  position: relative;
-  margin: 100px auto 20px;
+    width: 450px;
+    height: 200px;
+    padding: 3.5rem 5rem;
+    text-align: center;
+    border: dashed 1px #979797;
+    position: relative;
+    margin: 100px auto 20px;
+    background-color: #2d2d2d;
 }
 
 .droparea {
     width: 450px;
     height: 200px;
-    padding: 3rem 5rem;
+    padding: 3.5rem 5rem;
     text-align: center;
     border: dashed 1px #979797;
     position: relative;
     margin: 100px auto 20px;
+    background-color: #2d2d2d;
     animation: shake 1s;
     animation-iteration-count: infinite;
-}
-
-.imgDisplayArea {
-    width: 350px;
-    padding: 1rem 5rem;
-    text-align: center;
-    border: dashed 1px #979797;
-    position: relative;
-    margin: 0px auto;
 }
 
 .text-align {
@@ -42,6 +32,10 @@
     margin: 0 auto;
 }
 
+h2, h4 {
+    color: white;
+}
+
 label {
     color: white;
     width: 183px;
@@ -50,9 +44,24 @@ label {
     background-color: #db202f;
     padding: 11px 30px;
     font-size: 23px;
-  }
+    cursor: pointer;
+}
 
+label:hover {
+    background-color: rgb(206, 7, 7);
+}
 
+.error {
+    color: #f00;
+    text-align: center;
+    position: relative;
+}
+
+.loadingWrapper {
+    text-align: center;
+    position: relative;
+    margin-top: 150px;
+}
 
 
   @keyframes shake {
@@ -100,3 +109,5 @@ label {
       transform: translate(1px, -2px) rotate(-1deg);
     }
   }
+
+  
