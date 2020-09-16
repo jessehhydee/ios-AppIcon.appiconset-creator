@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener} from '@angular/core';
 import { Router } from "@angular/router";
-import { CreateImagesService } from '../create-images.service';
+
+import { CreateZipService } from '../create-zip.service';
 
 @Component({
   selector: 'app-upload',
@@ -9,54 +10,18 @@ import { CreateImagesService } from '../create-images.service';
 })
 export class UploadComponent implements OnInit {
 
-  constructor(public router: Router, public createImages: CreateImagesService) { }
-
-  ngOnInit() {
-    this.dragAreaClass = "dragarea";
-  }
-
-  //VARIABLES
+  constructor(public router: Router, public createZip: CreateZipService) {}
 
   error: string;
   loading: boolean = false;
   dragAreaClass: string;
-  imgURL: any;
-  //q: Array<string> = [];
-  q: any;
-  
-  //DEALING WITH FILE UPLOAD AND STORAGE
 
-  saveFiles(files: FileList) {
+  //ON COMPONENT INITALISATION
 
-    if (files[0].type != "image/png") {
-      this.error = "File must be PNG";
-    }
-
-    if (files[0].type == "image/png") {
-      
-      this.createImages.pullImageFile(files[0]);
-
-      this.loading = true;
-      this.error = "";
-
-      // setTimeout(() => {
-      //   this.q = this.createImages.pushGeneratedImages();
-      //   console.log(this.q);
-
-      //   let link = document.createElement("a");
-
-      //   link.href = this.q;
-      //   link.setAttribute('visibility','hidden');
-      //   link.download = 'picture';
-
-      //   document.body.appendChild(link);
-      //   link.click();
-      //   document.body.removeChild(link);
-      // }, 1500);
-
-    }
-
+  ngOnInit() {
+    this.dragAreaClass = "dragarea";
   }
+  
 
   //DEALING WITH DRAG AND DROP PROCESS
 
@@ -93,6 +58,30 @@ export class UploadComponent implements OnInit {
       let files: FileList = event.dataTransfer.files;
       this.saveFiles(files);
     }
+  }
+
+
+  //DEALING WITH FILE UPLOAD AND STORAGE
+
+  saveFiles(files: FileList) {
+
+    if (files[0].type != "image/png") {
+      this.error = "File must be PNG";
+    }
+
+    if (files[0].type == "image/png") {
+      
+      this.createZip.pullImageFile(files[0]);
+
+      this.loading = true;
+      this.error = "";
+
+      // setTimeout(() => {
+      //   this.generateDownloadButton();
+      // }, 4000);
+
+    }
+
   }
 
 }

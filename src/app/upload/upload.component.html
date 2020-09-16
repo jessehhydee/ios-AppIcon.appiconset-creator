@@ -26,7 +26,7 @@
     <img src="../../assets/loading.gif" alt="Loading Progress">
 </div>
 
-<div>
-    <a id="a"></a>
+<div class="downloadWrapper" *ngIf="zipFile">
+    <label class="downloadButton" (click)="downloadZip()">Download Zip</label>
 </div>
 
