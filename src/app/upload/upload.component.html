@@ -1,3 +1,6 @@
+
+<!-- DRAG AND DROP CONTAINER -->
+
 <div draggable="true" ngClass="{{dragAreaClass}}">
 
 	<div class="row">
@@ -18,15 +21,19 @@
     
 </div>
 
+<!-- ERROR MESSAGE IF FILE NOT A IMAGE -->
+
 <div class="error" *ngIf="error">
-	<p>{{ this.error }}</p>
+
+    <p>{{ this.error }}</p>
+    
 </div>
+
+<!-- PROGRESS GIF -->
 
 <div class="loadingWrapper" *ngIf="loading">
-    <img src="../../assets/loading.gif" alt="Loading Progress">
-</div>
 
-<div class="downloadWrapper" *ngIf="zipFile">
-    <label class="downloadButton" (click)="downloadZip()">Download Zip</label>
+    <img src="../../assets/loading.gif" alt="Loading Progress">
+
 </div>
 

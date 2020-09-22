@@ -81,7 +81,9 @@ export class CreateZipService {
       );
   
       setTimeout(() => {
+
         this.router.navigate(["download"]);
+        
       }, 2000);
       
     }, 2500);

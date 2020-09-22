@@ -12,6 +12,8 @@ export class UploadComponent implements OnInit {
 
   constructor(public router: Router, public createZip: CreateZipService) {}
 
+  //DECLARING LOCAL VARIABLES
+
   error: string;
   loading: boolean = false;
   dragAreaClass: string;
@@ -19,9 +21,10 @@ export class UploadComponent implements OnInit {
   //ON COMPONENT INITALISATION
 
   ngOnInit() {
+
     this.dragAreaClass = "dragarea";
+
   }
-  
 
   //DEALING WITH DRAG AND DROP PROCESS
 
@@ -66,7 +69,9 @@ export class UploadComponent implements OnInit {
   saveFiles(files: FileList) {
 
     if (files[0].type != "image/png") {
+
       this.error = "File must be PNG";
+      
     }
 
     if (files[0].type == "image/png") {
@@ -75,10 +80,6 @@ export class UploadComponent implements OnInit {
 
       this.loading = true;
       this.error = "";
-
-      // setTimeout(() => {
-      //   this.generateDownloadButton();
-      // }, 4000);
 
     }
 
