@@ -1,4 +1,4 @@
-# IosAppIconCreator
+# ios-AppIcon.appiconset-creator
 
 This project will convert your desired IOS app icon into a AppIcon.appiconset folder. This folder will include all required IOS app icon sizes along with a content.json file.
 
